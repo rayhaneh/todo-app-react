@@ -1,28 +1,81 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App {
+  font-family: Raleway;
+  width: 300px;
+  margin: 0 auto;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
   padding: 20px;
+  color: YellowGreen;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.todo-form input {
+  font-size: 1.1em;
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px;
+  border: 2px solid YellowGreen;
+}
+
+.todo-form input:focus {
+  outline-color: Gold;
+}
+
+.todo-form button {
+  width: 100%;
+  border-radius: none;
+  background-color: YellowGreen;
+  border: none;
+  padding: 10px;
+  font-size: 1.1em;
+  color: white;
+  margin: 0;
+}
+
+.todos-list ul {
+  padding: 0px;
+}
+
+.todos-list li {
+  list-style: none;
+  padding: 0px;
+  margin: 2px 0;
+  background-color: Gold;
+  color: DarkGreen;
+  font-size: 1.1em;
+}
+
+.todos-list li span {
+  padding-left: 10px;
+}
+
+.delete-button {
+  margin: 0;
+  height: 40px;
+  width: 40px;
+  border: none;
+  background-color: YellowGreen;
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.delete-button:hover {
+  background-color: DarkOrange;
 }
 
-.App-intro {
-  font-size: large;
-}
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
+
+
+
+
+
+
+
+
+
