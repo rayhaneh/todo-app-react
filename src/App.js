@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import uuidv4 from 'uuid'
+import _ from 'lodash'
+import ItemList from './ItemList'
 import './App.css'
-import 'font-awesome/css/font-awesome.min.css';
+import 'font-awesome/css/font-awesome.min.css'
 
 
 class App extends Component {
@@ -8,7 +11,7 @@ class App extends Component {
     super(props)
     this.state =  {
       todos: [],
-      newTodo: ''
+      newTodoText: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -17,44 +20,39 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.setState({todos: [...this.state.todos, this.state.newTodo], newTodo: ''})
+    const newTodo = {
+      id: uuidv4(),
+      text: this.state.newTodoText
+    }
+    this.setState({todos: [...this.state.todos, newTodo], newTodoText: ''})
   }
 
   handleChange(event) {
-    this.setState({newTodo: event.target.value})
+    this.setState({newTodoText: event.target.value})
   }
 
-  handleClick(index) {
-    const todos = [...this.state.todos]
-    todos.splice(index, 1)
+  handleClick(id) {
+    var todos = _.reject([...this.state.todos], (todo) => (
+      todo.id === id
+    ))
     this.setState({todos: todos})
   }
 
   render() {
-    const todos = this.state.todos.map((todo, index) => (
-      <li key={index}>
-        <button className="delete-button" onClick={() => this.handleClick(index)}>
-          <i className="fa fa-trash-o fa-2x" aria-hidden="true"></i>
-        </button>
-        <span>{todo}{index}</span>
-      </li>
-    ))
     return (
       <div className="App">
         <h2 className={'App-header'}>Simple todo app</h2>
         <form className={'todo-form'} onSubmit={this.handleSubmit}>
           <input
             name="todo"
-            value={this.state.newTodo}
+            value={this.state.newTodoText}
             onChange={this.handleChange}
             autoComplete={'off'}
           />
           <button type="submit">SAVE</button>
         </form>
         <div className="todos-list">
-          <ul>
-            {todos}
-          </ul>
+          <ItemList todos={this.state.todos} handleClick={this.handleClick}/>
         </div>
       </div>
     );
